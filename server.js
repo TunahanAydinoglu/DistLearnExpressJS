@@ -24,6 +24,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 const PORT = process.env.PORT;
+console.log(PORT)
 // Security
 
 app.use(mongoSanitize());
@@ -36,7 +37,6 @@ app.use(limitAccess({
 app.use(hpp());
 
 // Routes
-
 app.use("/api",routes);
 
 
@@ -46,9 +46,7 @@ app.use(express.static("public"));
 // Error Handler Middleware
 app.use(errorHandler);
 
-
 // Starting Our Server
 app.listen(PORT,() => {
     console.log(`App Started on ${PORT} - Environment : ${process.env.NODE_ENV} `);
-    
 });
