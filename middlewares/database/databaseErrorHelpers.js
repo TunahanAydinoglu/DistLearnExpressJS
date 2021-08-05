@@ -2,6 +2,8 @@ const path = require("path");
 const Meal = require("../../models/amodels/Meal");
 const Restaurant = require("../../models/amodels/Restaurant");
 const Category = require("../../models/Category");
+const Country = require("../../models/emodels/Country");
+const Hotel = require("../../models/emodels/Hotel");
 const root = path.dirname(require.main.filename);
 
 const Answer = require(root + "/models/Answer");
@@ -154,6 +156,32 @@ const checkMealExist = errorWrapper(async (req, res, next) => {
   }
   next();
 });
+
+const checkCountryExist = errorWrapper(async (req, res, next) => {
+  const lesson_id = req.params.id || req.params.countryId;
+  const lesson = await Country.findById(lesson_id);
+
+  if (!lesson) {
+    return next(
+      new CustomError(`Country Not Found with Id : ${lesson_id}`, 404)
+    );
+  }
+  next();
+});
+
+const checkHotelExist = errorWrapper(async (req, res, next) => {
+  const lesson_id = req.params.id || req.params.hotelId;
+  const lesson = await Hotel.findById(lesson_id);
+
+  if (!lesson) {
+    return next(
+      new CustomError(`Hotel Not Found with Id : ${lesson_id}`, 404)
+    );
+  }
+  next();
+});
+
+
 module.exports = {
   checkQuestionAndAnswerExist,
   checkLessonAndQuestionExist,
@@ -164,5 +192,7 @@ module.exports = {
   checkCategoryExist,
   checkCommentExist,
   checkRestaurantExist,
-  checkMealExist
+  checkMealExist,
+  checkCountryExist,
+  checkHotelExist
 };
