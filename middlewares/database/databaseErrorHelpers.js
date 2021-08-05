@@ -1,4 +1,6 @@
 const path = require("path");
+const Meal = require("../../models/amodels/Meal");
+const Restaurant = require("../../models/amodels/Restaurant");
 const Category = require("../../models/Category");
 const root = path.dirname(require.main.filename);
 
@@ -24,6 +26,7 @@ const checkQuestionExist = errorWrapper(async (req, res, next) => {
   }
   next();
 });
+
 const checkCommentExist = errorWrapper(async (req, res, next) => {
   const comment_id = req.params.id || req.params.comment_id;
   const comment = await Comment.findById(comment_id);
@@ -79,6 +82,7 @@ const checkLessonExist = errorWrapper(async (req, res, next) => {
   next();
 });
 
+
 const checkQuestionAndAnswerExist = errorWrapper(async (req, res, next) => {
   const { answer_id, question_id } = req.params;
 
@@ -127,6 +131,29 @@ const checkUserExist = errorWrapper(async (req, res, next) => {
   next();
 });
 
+const checkRestaurantExist = errorWrapper(async (req, res, next) => {
+  const lesson_id = req.params.id || req.params.restaurantId;
+  const lesson = await Restaurant.findById(lesson_id);
+
+  if (!lesson) {
+    return next(
+      new CustomError(`Restaurant Not Found with Id : ${lesson_id}`, 404)
+    );
+  }
+  next();
+});
+
+const checkMealExist = errorWrapper(async (req, res, next) => {
+  const lesson_id = req.params.id || req.params.mealId;
+  const lesson = await Meal.findById(lesson_id);
+
+  if (!lesson) {
+    return next(
+      new CustomError(`Meal Not Found with Id : ${lesson_id}`, 404)
+    );
+  }
+  next();
+});
 module.exports = {
   checkQuestionAndAnswerExist,
   checkLessonAndQuestionExist,
@@ -136,4 +163,6 @@ module.exports = {
   checkUserExist,
   checkCategoryExist,
   checkCommentExist,
+  checkRestaurantExist,
+  checkMealExist
 };
