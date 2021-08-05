@@ -1,42 +1,37 @@
 const express = require("express");
-const ReMealstaurant = require("../../models/amodels/Meal");
+const Meal = require("../../models/amodels/Meal");
 
 const {
   checkMealExist
 } = require("../../middlewares/database/databaseErrorHelpers");
 
 const {
-  addNewRestaurant,
-  getAllRestaurant,
-  getSingleRestaurant,
-  getRestaurantByCuisine
-} = require("../../controllers/a/restaurant");
+  getAllMeals,
+  getSingleMeal
+} = require("../../controllers/a/meal");
 
 const {
   getAccessToRoute,
-  getLessonOwnerAccess,
 } = require("../../middlewares/authorization/auth");
 
 const restaurantQueryMiddleware = require("../../middlewares/query/a/restaurantQueryMiddleware");
+const Meal = require("../../models/amodels/Meal");
 
 const router = express.Router({ mergeParams: true });
 
 router.get(
   "/",
-  restaurantQueryMiddleware(Restaurant, {
+  restaurantQueryMiddleware(Meal, {
     population: {
       path: "user",
       select: "name",
     },
     population: {
-      path: "meals",
+      path: "ingredients",
     },
   }),
-  getAllRestaurant
+  getAllMeals
 );
-router.get("/:id", checkRestaurantExist, getSingleRestaurant);
-router.get("/cuisine/:cuisine", getRestaurantByCuisine);
-
-router.post("/add", getAccessToRoute, addNewRestaurant);
+router.get("/:id", checkMealExist, getSingleMeal);
 
 module.exports = router;

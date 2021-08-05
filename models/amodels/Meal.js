@@ -24,6 +24,12 @@ const MealSchema = new Schema({
     ref: "User",
     required: true,
   },
+  ingredients: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "Ingredient",
+    },
+  ],
   restaurant: {
     type: mongoose.Schema.ObjectId,
     ref: "Restaurant",

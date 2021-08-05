@@ -14,8 +14,10 @@ const {
 
 const {
   getAccessToRoute,
-  getLessonOwnerAccess,
 } = require("../../middlewares/authorization/auth");
+const {
+  addNewMeal,
+} = require("../../controllers/a/meal");
 
 const restaurantQueryMiddleware = require("../../middlewares/query/a/restaurantQueryMiddleware");
 
@@ -38,5 +40,6 @@ router.get("/:id", checkRestaurantExist, getSingleRestaurant);
 router.get("/cuisine/:cuisine", getRestaurantByCuisine);
 
 router.post("/add", getAccessToRoute, addNewRestaurant);
+router.post("/:restaurantId/meal", getAccessToRoute, addNewMeal);
 
 module.exports = router;
