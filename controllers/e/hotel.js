@@ -1,4 +1,4 @@
-const Hotel = require("../../models/bmodels/Hotel");
+const Hotel = require("../../models/emodels/Hotel");
 
 const errorWrapper = require("../../helpers/error/errorWrapper");
 const CustomError = require("../../helpers/error/customError");
