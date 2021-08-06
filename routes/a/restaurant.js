@@ -39,7 +39,7 @@ router.get(
 router.get("/:id", checkRestaurantExist, getSingleRestaurant);
 router.get("/cuisine/:cuisine", getRestaurantByCuisine);
 
-router.post("/add", getAccessToRoute, addNewRestaurant);
+router.post("/", getAccessToRoute, addNewRestaurant);
 router.post("/:restaurantId/meal", getAccessToRoute, addNewMeal);
 
 module.exports = router;

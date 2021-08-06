@@ -25,7 +25,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 console.log(PORT)
 // Security
 
@@ -40,8 +40,6 @@ app.use(hpp());
 
 // Routes
 app.use("/api",routes);
-app.use("/a/api",a);
-app.use("/e/api",e);
 
 
 // Static Files - Uploads
