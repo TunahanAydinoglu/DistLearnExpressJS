@@ -15,7 +15,6 @@ const {
 } = require("../../middlewares/authorization/auth");
 
 const restaurantQueryMiddleware = require("../../middlewares/query/a/restaurantQueryMiddleware");
-const Meal = require("../../models/amodels/Meal");
 
 const router = express.Router({ mergeParams: true });
 

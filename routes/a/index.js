@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 const restaurant = require("./restaurant");
-const restaurant = require("./meal");
+const meal = require("./meal");
 const router = express.Router();
 
 router.use(cors());
