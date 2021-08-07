@@ -50,5 +50,5 @@ app.use(errorHandler);
 
 // Starting Our Server
 app.listen(PORT,() => {
-    console.log(`App Started on ${PORT} - Environment : ${process.env.NODE_ENV} `);
+    console.log(`App Started on ${PORT} - Environment: ${process.env.NODE_ENV} `);
 });
