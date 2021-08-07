@@ -1,4 +1,4 @@
-const Restaurant = require("../../models/amodels/Restaurant");
+const Meal = require("../../models/amodels/Meal");
 
 const errorWrapper = require("../../helpers/error/errorWrapper");
 const CustomError = require("../../helpers/error/customError");
