@@ -12,6 +12,6 @@ router.use(cors());
 router.use("/restaurant", restaurant);
 router.use("/meal", meal);
 
-router.post("/order",[getAccessToRoute,checkOrderAvailable], addNewOrder);
+// router.post("/order",[getAccessToRoute,checkOrderAvailable], addNewOrder);
 
 module.exports = router;
