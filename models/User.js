@@ -69,17 +69,23 @@ const UserSchema = new Schema({
       ref: "Order",
     },
   ],
+  dennes: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "Denne",
+    },
+  ],
   phone: {
     type: String,
+  },
+  paymentMethod: {
+    type: Number,
   },
   birthday: {
     type: String,
   },
-  books: [{
-    type: mongoose.Schema.ObjectId,
-    ref: "Book"
-  }]
 });
+
 UserSchema.methods.getTokenFromUserModel = function () {
   const { JWT_SECRET_KEY, JWT_EXPIRE } = process.env;
 

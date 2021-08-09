@@ -2,7 +2,7 @@ const express = require("express");
 const Country = require("../../models/emodels/Country");
 
 const {
-  checkRestaurantExist
+  checkCountryExist
 } = require("../../middlewares/database/databaseErrorHelpers");
 
 const {

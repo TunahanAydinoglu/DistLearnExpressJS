@@ -1,8 +1,9 @@
 const express = require("express");
 
 const {
-    addNewOrder
-} = require("../../controllers/a/order");
+    addNewDenne,
+    updateDenneStatus
+} = require("../../controllers/e/denne");
 
 const {
     getAccessToRoute,
@@ -10,6 +11,7 @@ const {
 
 const router = express.Router({ mergeParams: true });
 
-router.post("/", getAccessToRoute, addNewOrder);
+router.post("/", getAccessToRoute, addNewDenne);
+router.put("/:denneId", getAccessToRoute, updateDenneStatus);
 
 module.exports = router;
