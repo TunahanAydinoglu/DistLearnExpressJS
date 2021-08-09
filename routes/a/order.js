@@ -1,8 +1,6 @@
 const express = require("express");
 
-const {
-  checkOrderAvailable
-} = require("../../middlewares/database/databaseErrorHelpers");
+const { checkOrderAvailable } = require("../../middlewares/database/databaseErrorHelpers");
 
 const {
     addNewOrder
@@ -14,6 +12,8 @@ const {
 
 const router = express.Router({ mergeParams: true });
 
-router.post("/order", [getAccessToRoute, checkOrderAvailable], addNewOrder);
+router.use([getAccessToRoute, checkOrderAvailable]);
+
+router.post("/order", addNewOrder);
 
 module.exports = router;
