@@ -14,6 +14,6 @@ const router = express.Router({ mergeParams: true });
 
 router.use([getAccessToRoute, checkOrderAvailable]);
 
-router.post("/order", addNewOrder);
+router.post("/", addNewOrder);
 
 module.exports = router;
