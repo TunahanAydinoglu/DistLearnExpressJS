@@ -60,8 +60,8 @@ const UserSchema = new Schema({
   resetPasswordExpire: {
     type: Date,
   },
-  address:{
-    type:String,
+  address: {
+    type: String,
   },
   orders: [
     {
@@ -69,9 +69,15 @@ const UserSchema = new Schema({
       ref: "Order",
     },
   ],
-  books : [{
-    type : mongoose.Schema.ObjectId,
-    ref : "Book"
+  phone: {
+    type: String,
+  },
+  birthday: {
+    type: String,
+  },
+  books: [{
+    type: mongoose.Schema.ObjectId,
+    ref: "Book"
   }]
 });
 UserSchema.methods.getTokenFromUserModel = function () {
