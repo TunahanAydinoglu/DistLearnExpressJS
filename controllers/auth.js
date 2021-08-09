@@ -42,9 +42,22 @@ const login = errorWrapper(async (req,res,next) => {
 });
 const getLoggedInUser = errorWrapper(async (req,res,next)=>{
 
+    
     res.status(200).json({
         success : true,
         data : req.user
+    });
+
+
+});
+const getProfile = errorWrapper(async (req,res,next)=>{
+
+    const userId = req.user.id;
+    const user = await User.findById(userId).populate();
+    
+    res.status(200).json({
+        success : true,
+        data : user
     });
 
 
@@ -230,7 +243,8 @@ module.exports = {
     updateDetails,
     forgotPassword,
     resetPassword,
-    getUserByToken
+    getUserByToken,
+    getProfile
 };
 
 

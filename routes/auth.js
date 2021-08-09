@@ -13,7 +13,8 @@ const {
   updateDetails,
   forgotPassword,
   resetPassword,
-  getUserByToken
+  getUserByToken,
+  getProfile
 } = require("../controllers/auth");
 const { getAccessToRoute } = require("../middlewares/authorization/auth");
 const limitAccess = require("../middlewares/security/limitAccess");
@@ -31,6 +32,7 @@ router.post(
 );
 router.get("/logout", getAccessToRoute, logout);
 router.get("/user", getAccessToRoute, getLoggedInUser);
+router.get("/profile", getAccessToRoute, getProfile);
 router.put("/resetPassword", resetPassword);
 router.post(
   "/upload",
