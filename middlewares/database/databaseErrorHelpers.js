@@ -1,10 +1,11 @@
 const path = require("path");
-const Meal = require("../../models/amodels/Meal");
-const Restaurant = require("../../models/amodels/Restaurant");
-const Category = require("../../models/Category");
-const Country = require("../../models/emodels/Country");
-const Hotel = require("../../models/emodels/Hotel");
 const root = path.dirname(require.main.filename);
+
+const Meal = require(root + "/models/amodels/Meal");
+const Restaurant = require(root + "/models/amodels/Restaurant");
+const Category = require(root + "/models/Category");
+const Country = require(root + "/models/emodels/Country");
+const Hotel = require(root + "/models/emodels/Hotel");
 
 const Answer = require(root + "/models/Answer");
 const Question = require(root + "/models/Question");

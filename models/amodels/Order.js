@@ -17,10 +17,10 @@ const OrderSchema = new Schema({
     ref: "Restaurant",
     required: true,
   },
-  meal:{
-      type : mongoose.Schema.ObjectId,
-      ref:"Meal",
-      required:true,
+  meal: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Meal",
+    required: true,
   }
 });
 
