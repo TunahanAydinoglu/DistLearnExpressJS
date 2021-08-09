@@ -2,14 +2,12 @@ const express = require("express");
 const Order = require("../../models/amodels/Order");
 
 const {
-  checkRestaurantExist,
-  checkUserExist,
-  checkMealExist
+  checkOrderAvailable
 } = require("../../middlewares/database/databaseErrorHelpers");
 
 const {
     addNewOrder
-} = require("../../controllers/a/order");
+} = require("../../controllers/a/Order");
 
 const {
   getAccessToRoute,
