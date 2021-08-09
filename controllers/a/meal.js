@@ -27,8 +27,6 @@ const getSingleMeal = errorWrapper(async (req, res, next) => {
   const meal = await Meal.findById(mealId).populate([{
     path: "user",
     select: "name",
-  },{
-    path:"ingredients",
   }]);
 
   res.status(200).json({
