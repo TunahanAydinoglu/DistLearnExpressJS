@@ -12,7 +12,7 @@ const MealSchema = new Schema({
     required: [true, "Please provide a imageUrl"],
   },
   price: {
-    type: String,
+    type: Number,
     required: [true, "Please provide a price"],
   },
   createdAt: {

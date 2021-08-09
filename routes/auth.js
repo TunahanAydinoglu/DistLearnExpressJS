@@ -13,6 +13,7 @@ const {
   updateDetails,
   forgotPassword,
   resetPassword,
+  getUserByToken
 } = require("../controllers/auth");
 const { getAccessToRoute } = require("../middlewares/authorization/auth");
 const limitAccess = require("../middlewares/security/limitAccess");
@@ -38,5 +39,6 @@ router.post(
 );
 router.put("/updateDetails", getAccessToRoute, updateDetails);
 router.post("/forgotPassword", forgotPassword);
+router.get("/userDetail", getAccessToRoute, getUserByToken);
 
 module.exports = router;

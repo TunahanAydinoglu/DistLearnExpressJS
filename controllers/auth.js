@@ -206,9 +206,20 @@ const sendTokenToClient =  (user,res,status) => {
             role : user.role
         }
     });
-    
-
 }
+
+const getUserByToken = errorWrapper(async (req, res, next) => {
+    const userId = req.user.id;
+
+    const order = await User.findById(userId).populate();
+
+    res.status(200).json({
+        success: true,
+        message: order,
+    });
+});
+
+
 
 module.exports = {
     register,
@@ -218,7 +229,8 @@ module.exports = {
     getLoggedInUser,
     updateDetails,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    getUserByToken
 };
 
 

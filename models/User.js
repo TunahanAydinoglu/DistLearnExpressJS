@@ -60,6 +60,15 @@ const UserSchema = new Schema({
   resetPasswordExpire: {
     type: Date,
   },
+  address:{
+    type:String,
+  },
+  orders: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "Order",
+    },
+  ],
 });
 UserSchema.methods.getTokenFromUserModel = function () {
   const { JWT_SECRET_KEY, JWT_EXPIRE } = process.env;
