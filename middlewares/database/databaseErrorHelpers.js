@@ -182,7 +182,8 @@ const checkHotelExist = errorWrapper(async (req, res, next) => {
 });
 
 const checkOrderAvailable = errorWrapper(async (req, res, next) => {
-  const {mealId,restaurantId,userId} = req.body
+  const {mealId,restaurantId} = req.body;
+  const userId = req.user.id;
 
   const meal = await Meal.findById(mealId);
   if (!meal) {
