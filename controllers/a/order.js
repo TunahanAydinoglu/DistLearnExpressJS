@@ -1,4 +1,6 @@
 const Order = require("../../models/amodels/Order");
+const Meal = require("../../models/amodels/Meal");
+const Restaurant = require("../../models/amodels/Restaurant");
 
 const errorWrapper = require("../../helpers/error/errorWrapper");
 const CustomError = require("../../helpers/error/customError");
@@ -37,3 +39,39 @@ const addNewOrder = errorWrapper(async (req, res, next) => {
 module.exports = {
     addNewOrder,
 };
+
+
+
+
+
+// const checkOrderAvailable = errorWrapper(async (req, res, next) => {
+//   const {mealId,restaurantId} = req.body;
+//   const userId = req.user.id;
+
+//   const meal = await Meal.findById(mealId);
+//   if (!meal) {
+//     return next(
+//       new CustomError(`Meal Not Found with Id : ${mealId}`, 404)
+//     );
+//   }
+
+//   const restaurant = await Restaurant.findById(restaurantId);
+//   if (!restaurant) {
+//     return next(
+//       new CustomError(`Restaurant Not Found with Id : ${restaurantId}`, 404)
+//     );
+//   }
+
+//   const user = await User.findById(userId);
+//   if (!user) {
+//     return next(
+//       new CustomError(`User Not Found with Id : ${userId}`, 404)
+//     );
+//   }
+
+//   req.user = user;
+//   req.meal = meal;
+//   req.restaurant = restaurant;
+
+//   next();
+// });
