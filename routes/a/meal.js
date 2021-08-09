@@ -24,10 +24,7 @@ router.get(
     population: {
       path: "user",
       select: "name",
-    },
-    population: {
-      path: "ingredients",
-    },
+    }
   }),
   getAllMeals
 );
