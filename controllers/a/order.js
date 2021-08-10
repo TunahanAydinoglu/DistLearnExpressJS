@@ -35,6 +35,24 @@ const addNewOrder = errorWrapper(async (req, res, next) => {
     });
 });
 
+const getOrdersByUserId = errorWrapper(async (req, res, next) => {
+    const { userId } = req.user.id;
+    const restaurants = await Order.find({ user: userId }).populate([
+        {
+            path: "restaurant",
+        },
+        {
+            path: "meal"
+        }
+    ]);
+
+    res.status(200).json({
+        success: true,
+        data: restaurants,
+    });
+});
+
 module.exports = {
     addNewOrder,
+    getOrdersByUserId
 };

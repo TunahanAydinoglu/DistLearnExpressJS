@@ -1,7 +1,8 @@
 const express = require("express");
 
 const {
-    addNewOrder
+    addNewOrder,
+    getOrdersByUserId
 } = require("../../controllers/a/order");
 
 const {
@@ -10,6 +11,7 @@ const {
 
 const router = express.Router({ mergeParams: true });
 
+router.get("/", getAccessToRoute, getOrdersByUserId);
 router.post("/", getAccessToRoute, addNewOrder);
 
 module.exports = router;

@@ -55,14 +55,6 @@ const getProfile = errorWrapper(async (req, res, next) => {
     const userId = req.user.id;
     const user = await User.findById(userId).populate([{
         path: "orders",
-        populate: [
-            {
-                path: "meal"
-            },
-            {
-                path: "restaurant"
-            }
-        ]
     },
     {
         path: "dennes",
