@@ -5,6 +5,24 @@ const Restaurant = require("../../models/amodels/Restaurant");
 const errorWrapper = require("../../helpers/error/errorWrapper");
 const CustomError = require("../../helpers/error/customError");
 
+const getOrdersByUserId = errorWrapper(async (req, res, next) => {
+    const userId  = req.user.id;
+    
+    const orders = await Order.find({ user: userId }).populate([
+        {
+            path: "restaurant",
+        },
+        {
+            path: "meal"
+        }
+    ]);
+
+    res.status(200).json({
+        success: true,
+        data: orders,
+    });
+});
+
 const addNewOrder = errorWrapper(async (req, res, next) => {
     const userId = req.user.id;
     const { restaurantId, mealId } = req.body;
@@ -35,7 +53,37 @@ const addNewOrder = errorWrapper(async (req, res, next) => {
     });
 });
 
-const getOrdersByUserId = errorWrapper(async (req, res, next) => {
+const addNewOrderBulkMethod = errorWrapper(async (req, res, next) => {
+    const userId = req.user.id;
+    const { restaurantId, mealIds } = req.body;
+
+    const restaurant = await Restaurant.findById(restaurantId);
+    if (!restaurant) {
+        return next(
+            new CustomError(`Restaurant Not Found with Id : ${restaurantId}`, 404)
+        );
+    }
+
+    const meals = await Meal.find({'_id': {$in: mealIds}});
+    if (!meals) {
+        return next(
+            new CustomError(`Meal Not Found with Id`, 404)
+        );
+    }
+
+    const order = await Order.create({
+        meals: mealIds,
+        restaurant: restaurant.id,
+        user: userId,
+    });
+
+    res.status(200).json({
+        success: true,
+        message: order,
+    });
+});
+
+const getOrdersByUserIdForBulkOrders = errorWrapper(async (req, res, next) => {
     const userId  = req.user.id;
     
     const orders = await Order.find({ user: userId }).populate([
@@ -43,7 +91,7 @@ const getOrdersByUserId = errorWrapper(async (req, res, next) => {
             path: "restaurant",
         },
         {
-            path: "meal"
+            path: "meals"
         }
     ]);
 
@@ -55,5 +103,7 @@ const getOrdersByUserId = errorWrapper(async (req, res, next) => {
 
 module.exports = {
     addNewOrder,
-    getOrdersByUserId
+    getOrdersByUserId,
+    getOrdersByUserIdForBulkOrders,
+    addNewOrderBulkMethod
 };

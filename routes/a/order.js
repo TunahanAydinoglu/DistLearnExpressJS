@@ -2,7 +2,9 @@ const express = require("express");
 
 const {
     addNewOrder,
-    getOrdersByUserId
+    getOrdersByUserId,
+    getOrdersByUserIdForBulkOrders,
+    addNewOrderBulkMethod
 } = require("../../controllers/a/order");
 
 const {
@@ -14,4 +16,6 @@ const router = express.Router({ mergeParams: true });
 router.get("/", getAccessToRoute, getOrdersByUserId);
 router.post("/", getAccessToRoute, addNewOrder);
 
+router.get("/bulk", getAccessToRoute, getOrdersByUserIdForBulkOrders);
+router.post("/bulk", getAccessToRoute, addNewOrderBulkMethod);
 module.exports = router;

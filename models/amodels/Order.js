@@ -21,7 +21,14 @@ const OrderSchema = new Schema({
     type: mongoose.Schema.ObjectId,
     ref: "Meal",
     required: true,
-  }
+  },
+  meals:[
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "Meal",
+      required: true,
+    }
+  ]
 });
 
 // Pre Save Method
